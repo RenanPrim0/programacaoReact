@@ -1,7 +1,7 @@
 'use client';
 
 import Navbar from "@/components/dashboard/navbar";
-import MotosPagina from "@/components/motos/mecanico-form";
+import MotosPagina from "@/components/motos/motos-form";
 
 export default function MotosPage() {
 

@@ -1,11 +1,11 @@
 "use client";
 
-import MecanicoForm from "../mecanicos/mecanico-form";
+import MotosPagina from "./motos-form";
 
 export default function MotosPage() {
     return (
         <>
-            <MecanicoForm />
+            <MotosPagina />
         </>
     );
 }
