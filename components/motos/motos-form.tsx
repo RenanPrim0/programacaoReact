@@ -15,6 +15,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import { frontendAPI } from "@/lib/api";
+import { toast } from "@/hooks/use-toast";
+import axios from "axios";
 
 
 const schema = z.object({
@@ -32,7 +35,7 @@ export default function MotosPagina() {
     const router = useRouter();
     
     const [loading, setLoading] = useState(false);
-    const [atualizarClientes, setAtualizarClientes] = useState<boolean>(false);
+    const [atualizarClientes, setAtualizarMotos] = useState<boolean>(false);
 
     const {
     register,
@@ -44,6 +47,60 @@ export default function MotosPagina() {
   } = useForm<MotoForm>({
     resolver: zodResolver(schema),
   });
+
+
+    async function onSubmit(data: MotoForm) {
+        setLoading(true);
+    
+        const requestData = {
+          nome: data.ano,
+          endereco: data.cor,
+          telefone: data.marca,
+          cpf: data.modelo,
+          email: data.placa,
+        };
+    
+        try {
+          const response = await frontendAPI.post(
+            "/motos/cadastrar",
+            requestData,
+          );
+    
+          const { nome, errorMessage } = response.data;
+    
+          if (nome) {
+            toast({
+              title: "Moto cadastrado com sucesso! ",
+              description: `Moto ${nome} cadastrado!`,
+              className: "bg-green-500 text-white font-bold",
+            });
+    
+            reset();
+            setAtualizarMotos(true);
+          } else {
+            toast({
+              title: "Erro ao cadastrar Moto! ❌",
+              description: `${errorMessage || "Erro desconhecido."} `,
+              variant: "destructive",
+              className: "text-white font-bold",
+            });
+          }
+        } catch (error: unknown) {
+          const errorMessage =
+            axios.isAxiosError(error) && error.response?.data?.error
+              ? error.response.data.error
+              : "API fora do ar, tente novamente mais tarde.";
+    
+          toast({
+            title: "Erro ao cadastrar Moto! ❌",
+            description: errorMessage,
+            variant: "destructive",
+            className: "text-white font-bold",
+          });
+        } finally {
+          setLoading(false);
+        }
+      }
 
 
     return (
@@ -128,7 +185,7 @@ export default function MotosPagina() {
 
                             <Button type="button"
                             variant="outline" 
-                            onClick={() => router.push("/clientes")}
+                            onClick={() => router.push("/")}
                             className="border-slate-700 text-slate-300 hover:bg-slate-800 hover:text-white">
                                 ← Cancelar
                             </Button>

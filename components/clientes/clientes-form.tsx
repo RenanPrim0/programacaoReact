@@ -64,7 +64,7 @@ export function ClientesForm() {
 
     try {
       const response = await frontendAPI.post(
-        "/cliente/cadastrar",
+        "/clientes/cadastrar",
         requestData,
       );
 
@@ -106,7 +106,7 @@ export function ClientesForm() {
 
 
   return (
-    <div className="min-h-screen bg-slate-950 p-6">
+    <div className="min-h-screen bg-slate-950 p-4">
       <div className="max-w-2xl mx-auto">
         <Card className="bg-slate-900 border-slate-700">
           <CardHeader>
@@ -119,8 +119,8 @@ export function ClientesForm() {
           </CardHeader>
 
           <CardContent className="space-y-5">
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <div className="space-y-1.5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+              <div className="space-y-2">
                 <Label htmlFor="nome" className="text-slate-300">
                   Nome completo
                 </Label>

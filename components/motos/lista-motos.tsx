@@ -1,33 +1,33 @@
 "use client";
 
-import { ClienteResponseType } from "@/app/api/cliente/cadastrar/route";
 import { toast } from "@/hooks/use-toast";
 import { frontendAPI } from "@/lib/api";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { MotoResponseType } from "@/app/api/moto/cadastrar/route";
 
 interface props {
   atualizar?: boolean;
 }
 
-export default function ListaClientes({ atualizar }: props) {
-  const [loadingClientes, setLoadingClientes] = useState(false);
-  const [clientesData, setClientesData] = useState<
-    ClienteResponseType[] | null
+export default function ListaMotos({ atualizar }: props) {
+  const [loadingMotos, setLoadingMotos] = useState(false);
+  const [motosData, setMotosData] = useState<
+    MotoResponseType[] | null
   >([]);
 
-  async function getClientes() {
-    setLoadingClientes(true);
+  async function getMotos() {
+    setLoadingMotos(true);
     try {
       const result = await frontendAPI.get("/cliente/listar");
 
-      const clientes = result.data as ClienteResponseType[];
+      const clientes = result.data as MotoResponseType[];
 
       if (clientes) {
-        setClientesData(clientes);
+        setMotosData(clientes);
       } else {
-        setClientesData([]);
+        setMotosData([]);
       }
     } catch (error) {
       toast({
@@ -37,25 +37,25 @@ export default function ListaClientes({ atualizar }: props) {
         className: "text-white font-bold",
       });
     } finally {
-      setLoadingClientes(false);
+      setLoadingMotos(false);
     }
   }
 
   useEffect(() => {
-    getClientes();
+    getMotos();
   }, []);
 
   useEffect(() => {
     if (atualizar) {
-      getClientes();
+      getMotos();
     }
   }, [atualizar]);
 
   return (
     <>
-      {loadingClientes ? (
+      {loadingMotos ? (
         <span className="text-white flex items-center gap-1 my-2">
-          Carregando clientes... <Loader2 className="animate-spin size-4" />
+          Carregando motos... <Loader2 className="animate-spin size-4" />
         </span>
       ) : (
         <div className="rounded-lg p-4">
@@ -66,17 +66,17 @@ export default function ListaClientes({ atualizar }: props) {
                     </CardTitle>
                 </CardHeader>
             <CardContent>            
-                {clientesData && clientesData?.length > 0 ? (
+                {motosData && motosData?.length > 0 ? (
                 <div className="flex flex-col gap-2 overflow-y-auto">
-                {clientesData.map((cliente) => (
-                    <span key={cliente.id} className="text-white">
-                    Nome: {cliente.nome} / CPF: {cliente.cpf} / Endereço : {cliente.endereco}
+                {motosData.map((motos) => (
+                    <span key={motos.id} className="text-white">
+                    Cor: {motos.cor} / Ano: {motos.ano} / Marca : {motos.marca} / Modelo: {motos.modelo} / Placa: {motos.placa}
                     </span>
                 ))}
                 </div>
                 ) : (
                 <span className="text-white  my-2">
-                Não há clientes cadastrados.
+                Não há motos cadastrados.
                 </span>
                 )}
           </CardContent>
