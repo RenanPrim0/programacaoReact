@@ -19,7 +19,7 @@ import { frontendAPI } from "@/lib/api";
 import { toast } from "@/hooks/use-toast";
 import axios from "axios";
 import { ClienteResponseType } from "@/app/api/cliente/cadastrar/route";
-import ListaClientes from "./lista-clientes";
+import { Lista } from "./dialog";
 
 const schema = z.object({
   nome: z.string().min(3, "nome deve ter pelo menos 3 caracteres"),
@@ -31,11 +31,11 @@ const schema = z.object({
 
 type ClienteForm = z.infer<typeof schema>;
 
-export function ClientesForm() {
+export function ClienteForm() {
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
-  const [atualizarClientes, setAtualizarClientes] = useState<boolean>(false);
+  const [atualizarCliente, setAtualizarCliente] = useState<boolean>(false);
 
 
   const {
@@ -64,7 +64,7 @@ export function ClientesForm() {
 
     try {
       const response = await frontendAPI.post(
-        "/clientes/cadastrar",
+        "/cliente/cadastrar",
         requestData,
       );
 
@@ -78,7 +78,7 @@ export function ClientesForm() {
         });
 
         reset();
-        setAtualizarClientes(true);
+        setAtualizarCliente(true);
       } else {
         toast({
           title: "Erro ao cadastrar cliente! ❌",
@@ -215,12 +215,11 @@ export function ClientesForm() {
                 </Button>
               </div>
             </form>
+            <div>
+              <Lista></Lista>
+            </div>
           </CardContent>
-        </Card>
-
-        <ListaClientes atualizar={atualizarClientes}/>
-
-        
+        </Card>        
       </div>
     </div>
   );

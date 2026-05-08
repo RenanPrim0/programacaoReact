@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { NextRequest } from "next/server";
 
 
-export type MecanicosResponseType = {
+export type MecanicoResponseType = {
     id?: number;
     nome?: string;    
     cpf?: string;
@@ -26,11 +26,11 @@ export async function POST(request: NextRequest) {
 
     const data = JSON.stringify(dados);
 
-    let response: MecanicosResponseType;
+    let response: MecanicoResponseType;
 
     try {
 
-        const resultado = await backendAPI.post("/mecanicos/cadastrar", data, {
+        const resultado = await backendAPI.post("/mecanico/cadastrar", data, {
             headers: {
                 
             }

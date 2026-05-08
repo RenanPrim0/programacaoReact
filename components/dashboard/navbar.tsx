@@ -6,7 +6,7 @@ import { useState } from "react";
 export default function Navbar() {
   const link = usePathname();
 
-  const ativo = link.includes("mecanicos") ? "mecanicos" : link.includes("clientes") ? "clientes" : link.includes("motos") ? "motos" : link.includes("os") ? "os" : link.includes("admin") ? "admin" : "clientes";
+  const ativo = link.includes("mecanico") ? "mecanico" : link.includes("cliente") ? "cliente" : link.includes("moto") ? "moto" : link.includes("os") ? "os" : link.includes("admin") ? "admin" : "cliente";
 
 
   
@@ -16,9 +16,9 @@ export default function Navbar() {
 
 
   const listaNavbar = [
-    { nome: "Dados dos Clientes", link: "clientes" },
-    { nome: "Dados das Motos", link: "motos" },
-    { nome: "Dados dos Mecânicos", link: "mecanicos" },
+    { nome: "Dados do Cliente", link: "cliente" },
+    { nome: "Dados da Moto", link: "moto" },
+    { nome: "Dados do Mecânico", link: "mecanico" },
     { nome: "Ordens de Serviço", link: "os" },
     { nome: "Admin", link: "admin" },
   ]

@@ -1,13 +1,13 @@
 "use client";
 
 import Navbar from "@/components/dashboard/navbar";
-import MecanicosPagina from "@/components/mecanicos/mecanico-pagina";
+import MecanicoPagina from "@/components/mecanico/mecanico-pagina";
 
-export default function MecanicosPage() {
+export default function MecanicoPage() {
   return (
     <div className="overflow-hidden">
       <Navbar />
-      <MecanicosPagina />
+      <MecanicoPagina />
     </div>
   );
 }

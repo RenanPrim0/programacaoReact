@@ -1,13 +1,13 @@
 "use client";
 
 import Navbar from "@/components/dashboard/navbar";
-import ClientesPagina from "@/components/clientes/clientes-pagina";
+import ClientePagina from "@/components/cliente/cliente-pagina";
 
-export default function ClientesPage() {
+export default function ClientePage() {
   return (
     <div className="overflow-hidden">
       <Navbar />
-      <ClientesPagina />
+      <ClientePagina />
     </div>
   );
 }

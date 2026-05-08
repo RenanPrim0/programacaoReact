@@ -1,16 +1,16 @@
 'use client';
 
 import Navbar from "@/components/dashboard/navbar";
-import MotosPagina from "@/components/motos/motos-form";
+import MotoPagina from "@/components/moto/moto-form";
 
-export default function MotosPage() {
+export default function MotoPage() {
 
 
   return (
     <div className="overflow-hidden">
     
         <Navbar/>
-        <MotosPagina />
+        <MotoPagina />
       </div>
       
   );

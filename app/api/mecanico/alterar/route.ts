@@ -1,7 +1,7 @@
 import { backendAPI } from "@/lib/api";
 import { AxiosError } from "axios";
 import { NextRequest } from "next/server";
-import { BackendErrorResponseType, MecanicosResponseType } from "../cadastrar/route";
+import { BackendErrorResponseType, MecanicoResponseType } from "../cadastrar/route";
 
 
 
@@ -11,11 +11,11 @@ export async function PUT(request: NextRequest) {
 
     const data = JSON.stringify(dados);
 
-    let response: MecanicosResponseType;
+    let response: MecanicoResponseType;
 
     try {
 
-        const resultado = await backendAPI.put("/mecanicos/alterar", data, {
+        const resultado = await backendAPI.put("/mecanico/alterar", data, {
             headers: {
                 
             }

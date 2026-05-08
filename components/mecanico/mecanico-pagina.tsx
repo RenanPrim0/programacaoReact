@@ -2,7 +2,7 @@
 
 import MecanicoForm from "./mecanico-form";
 
-export default function MecanicosPagina() {
+export default function MecanicoPagina() {
   return (
     <>
       <MecanicoForm />

@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { backendAPI } from "@/lib/api";
 import { AxiosError } from "axios";
-import { BackendErrorResponseType, MecanicosResponseType } from "../cadastrar/route";
+import { BackendErrorResponseType, MecanicoResponseType } from "../cadastrar/route";
 
 export async function GET(request: NextRequest) {
     let response: BackendErrorResponseType;
 
     try {
-        const result = await backendAPI.get("/mecanicos/listar", {
+        const result = await backendAPI.get("/mecanico/listar", {
             headers: {
             }
         });
 
-        const retorno = result.data as MecanicosResponseType[];
+        const retorno = result.data as MecanicoResponseType[];
         return new NextResponse(JSON.stringify(retorno), { status: 200 });
 
     } catch (e) {
