@@ -23,6 +23,14 @@ export type OsResponseType = {
   status: string;
 };
 
+export type BackendErrorResponseType = {
+    errorCode?: string;
+    errorMessage?: string;
+    errorDescription?: string;
+    path?: string;
+    date?: Date;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();

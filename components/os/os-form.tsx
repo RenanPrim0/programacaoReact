@@ -29,6 +29,7 @@ import { ClienteResponseType } from "@/app/api/cliente/cadastrar/route";
 import { MecanicoResponseType } from "@/app/api/mecanico/cadastrar/route";
 import { MotoResponseType } from "@/app/api/moto/cadastrar/route";
 import { OsResponseType } from "@/app/api/os/cadastrar/route";
+import { ListaOsDialog } from "./dialog";
 
 const schema = z.object({
   cliente_id: z.string().min(1, "Selecione um cliente"),
@@ -304,6 +305,9 @@ export default function OsForm() {
                 </div>
               </form>
             )}
+            <div>
+              <ListaOsDialog></ListaOsDialog>
+            </div>
           </CardContent>
         </Card>
       </div>
